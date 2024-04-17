@@ -1,7 +1,8 @@
 import { ISettings, IStatistics, IUser, IUserWord } from './interfaces';
+import { address } from './address';
 
 export default class ApiService {
-    baseUrl = 'https://rs-lang-team-156.herokuapp.com';
+    baseUrl = address;
 
     async getWords(page: number, group: number) {
         return await fetch(`${this.baseUrl}/words?page=${page}&group=${group}`).then((res) => res.json());
@@ -158,7 +159,7 @@ export default class ApiService {
     }
 
     // в методе нет фильтрации
-    async getAggregatedWords(id: string, group: number, token: string, page?: number, wordsPerPage?: number) {
+    async getAggregatedWords(id: string, group: number, token: string, page?: number) {
         return await fetch(`${this.baseUrl}/users/${id}/aggregatedWords?group=${group}&page=${page}`, {
             method: 'GET',
             headers: {
